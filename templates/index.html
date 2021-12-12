@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {% load static %}
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <title>My Portfolio!</title>
+  </head>
+  <body>
+    <header>
+      <a href="#" class="logo">Chandan Adhikari</a>
+      <div class="toggle" onclick="toggleMenu();"></div>
+      <ul class="menu">
+        <li><a href="#home" onclick="toggleMenu();">Home</a></li>
+        <li><a href="#skills" onclick="toggleMenu();">Skills</a></li>
+        <li><a href="#projects" onclick="toggleMenu();">Projects</a></li>
+        <!-- <li><a href=""  onclick="toggleMenu();">Education</a></li> -->
+        <li><a href="#contact" onclick="toggleMenu();">Contact</a></li>
+      </ul>
+    </header>
+
+    <section class="banner" id="home">
+      <div class = "intro">
+        <h2>Hi,</br> <span>I am Chandan Adhikari</span></br>
+        I am a software developer</br>
+        <div class="box"><a class="btn btn-outline-light align-center" href="{{info.resume.url}}">Download Resume <i class="far fa-file-pdf fa-lg"></i></a>
+        </div>
+      </h2>
+      </div>
+      
+      
+    </section>
+
+    
+
+    <section id="skills" class="skillclass">
+      <div class="heading">
+        <h2>My Skills</h2>
+       
+      </div>
+      <div class="row">
+        <div class="col-sm-3 d-none d-md-block">
+          {% for skill in skills %}
+          <p style="font-size: 20px; padding: 2px 0px">
+            {{ skill.skill_name }}
+          </p>
+          {% endfor %}
+        </div>
+        <div class="col-sm-12 col-md-9">
+          {% for skill in skills %}
+          <p
+            class="d-none d-sm-block d-md-none"
+            style="font-size: 20px; padding: 2px 0"
+          >
+            {{ skill.skill_name }}
+          </p>
+          <div class="progress" style="margin-bottom: 34px; margin-top: 7px">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              style="width: {{ skill.percent }}%;"
+              aria-valuenow="{{ skill.percent }}%"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              {{ skill.percent }}%
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="projects">
+      <div class="container">
+        <div class="heading white">
+          <h2>My Projects</h2>
+          
+        </div>
+        <div class="container my-0">
+          
+          <div class = "row">  
+            {% for project in projects %}
+            <div class = "col-md-4">
+              <div class="card" style="width: 18rem">
+                <img class="card-img-top" src="{{project.image.url}}"  width="200" 
+                height="200" alt="Card image cap" />
+                  <div class="card-body">
+                  <h5 class="card-title">{{project.title}}</h5>
+                  <p class="card-text">{{project.description}}</p>
+                    <a href="{{project.github}}" target="_blank" class="btn btn-primary"
+                      >View Project</a
+                  </div>
+                </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+       
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="heading white">
+        <h2>Contact Us</h2>
+        
+      </div>
+      <div class="content">
+        <div class="contactInfo">
+          <h3>Contact Info</h3>
+          <div class="contactInfoBox">
+            <div class="box">
+              
+            </div>
+            <div class="box">
+              <div class="icon">
+                <i class="fa fa-phone"></i>
+              </div>
+              <div class="text">
+                <h3>Phone</h3>
+                <p>{{info.phone}}</p>
+              </div>
+            </div>
+            <div class="box">
+              <div class="icon">
+                <i class="fa fa-envelope-o"></i>
+              </div>
+              <div class="text">
+                <h3>Email</h3>
+                <p>{{info.email}}</p>
+              </div>
+            </div>
+           
+            
+          </div>
+          <div class="sm" >
+            <a href="{{info.github}}" target="_blank">
+              <i class="fab fa-github fa-3x"></i>
+          </a>
+       
+          <a href="{{info.linkedin}}" target="_blank">
+              <i class="fab fa-linkedin-in fa-3x"></i>
+          </a>
+          
+        </div>
+        
+        </div>
+        <div class="formBx">
+          <form>
+            <h3>Message Me</h3>
+            <input type="text" placeholder="Full Name" />
+            <input type="email" placeholder="Email" />
+            <textarea placeholder="Your Message"></textarea>
+            <input type="submit" value="Send" />
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script
+      src="https://kit.fontawesome.com/0729def0f4.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  <script src="{% static 'js/script.js' %}"></script>
+</html>
